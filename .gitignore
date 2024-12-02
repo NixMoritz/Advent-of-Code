@@ -8,6 +8,9 @@
 *.so
 *.dylib
 
+# Input of AoC
+*.txt
+
 # Test binary, built with `go test -c`
 *.test
 
