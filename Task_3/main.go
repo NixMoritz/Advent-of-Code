@@ -12,7 +12,8 @@ func main() {
 
 func solve() (int, error) {
 	inputData := `
-		`
+	your input
+	`
 
 	patternMul := `mul\((\d+),(\d+)\)`
 	patternDo := `do\(\)`
@@ -45,15 +46,14 @@ func solve() (int, error) {
 			lastDoMatch := getLastMatch(allDoMatches)
 			lastDontMatch := getLastMatch(allDontMatches)
 
+			fmt.Println("Index of mul", startMulIndex)
 			fmt.Println("Last do() match:", lastDoMatch)
 			fmt.Println("Last don't() match:", lastDontMatch)
 
-			if lastDontMatch != nil && (lastDoMatch == nil || lastDontMatch[0] < lastDoMatch[0]) {
+			if lastDontMatch != nil && lastDontMatch[0] > lastDoMatch[0] {
 				fmt.Printf("Skipping mul(%d, %d) due to previous 'don't()'\n", num1, num2)
 				continue
-			}
-
-			if lastDoMatch != nil {
+			} else {
 				fmt.Printf("Calculating mul(%d, %d) due to previous 'do()'\n", num1, num2)
 				result += mul(num1, num2)
 			}
