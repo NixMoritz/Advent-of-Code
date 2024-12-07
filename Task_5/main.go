@@ -10,124 +10,123 @@ import (
 )
 
 func main() {
-	p1()
-	p2()
+	solvePart1()
+	solvePart2()
 }
 
-func p1() {
-	var total int = 0
-	file, _ := os.Open("input.txt")
+func solvePart1() {
+	total := 0
+	file, err := os.Open("input.txt")
+	if err != nil {
+		fmt.Println("Error opening file:", err)
+		return
+	}
 	defer file.Close()
 
-	var rules []string
-	var toProduce []string
+	rules, toProduce := parseFile(file)
+	rulesMap := createRulesMap(rules)
 
-	scanner := bufio.NewScanner(file)
-
-	for scanner.Scan() {
-		line := scanner.Text()
-		if len(line) > 0 && strings.Contains(line, "|") {
-			rules = append(rules, line)
-		} else if len(line) > 0 {
-			toProduce = append(toProduce, line)
-		}
-	}
-
-	var rulesMap map[string][]string = make(map[string][]string)
-
-	for i := 0; i < len(rules); i++ {
-		working := strings.Split(rules[i], "|")
-		rulesMap[working[1]] = append(rulesMap[working[1]], working[0])
-	}
-
-	for i := 0; i < len(toProduce); i++ {
-		working := strings.Split(toProduce[i], ",")
-		var safe bool = true
-		for j := 0; j < len(working)-1; j++ {
-			after := working[j+1:]
-			testVals := rulesMap[working[j]]
-			for k := 0; k < len(after); k++ {
-				if slices.Contains(testVals, after[k]) {
-					safe = false
-				}
-			}
-		}
-		if safe {
+	for _, item := range toProduce {
+		working := strings.Split(item, ",")
+		if isSafe(working, rulesMap) {
 			middleVal, _ := strconv.Atoi(working[len(working)/2])
 			total += middleVal
 		}
 	}
+
 	fmt.Println(total)
 }
 
-func p2() {
-	var total int = 0
-	file, _ := os.Open("input.txt")
+func solvePart2() {
+	total := 0
+	file, err := os.Open("input.txt")
+	if err != nil {
+		fmt.Println("Error opening file:", err)
+		return
+	}
 	defer file.Close()
 
-	var rules []string
-	var toProduce []string
+	rules, toProduce := parseFile(file)
+	rulesMap := createRulesMap(rules)
 
-	scanner := bufio.NewScanner(file)
-
-	for scanner.Scan() {
-		line := scanner.Text()
-		if len(line) > 0 && strings.Contains(line, "|") {
-			rules = append(rules, line)
-		} else if len(line) > 0 {
-			toProduce = append(toProduce, line)
-		}
-	}
-
-	var rulesMap map[string][]string = make(map[string][]string)
-
-	for i := 0; i < len(rules); i++ {
-		working := strings.Split(rules[i], "|")
-		rulesMap[working[1]] = append(rulesMap[working[1]], working[0])
-	}
-
-	for i := 0; i < len(toProduce); i++ {
-		working := strings.Split(toProduce[i], ",")
-		var safe bool = true
-		for j := 0; j < len(working)-1; j++ {
-			after := working[j+1:]
-			testVals := rulesMap[working[j]]
-			for k := 0; k < len(after); k++ {
-				if slices.Contains(testVals, after[k]) {
-					safe = false
-				}
-			}
-		}
-		if !safe {
-			working = reorderVals(working, rulesMap)
+	for _, item := range toProduce {
+		working := strings.Split(item, ",")
+		if !isSafe(working, rulesMap) {
+			working = reorderValues(working, rulesMap)
 			middleVal, _ := strconv.Atoi(working[len(working)/2])
 			total += middleVal
 		}
 	}
+
 	fmt.Println(total)
 }
 
-func reorderVals(vals []string, rules map[string][]string) []string {
-	var changed bool = false
-	var temp []string
-	for i := 0; i < len(vals); i++ {
-		curVal := vals[i]
-		thingsShouldBeBefore := rules[curVal]
+func parseFile(file *os.File) ([]string, []string) {
+	var rules, toProduce []string
+	scanner := bufio.NewScanner(file)
+
+	for scanner.Scan() {
+		line := scanner.Text()
+		if len(line) > 0 {
+			if strings.Contains(line, "|") {
+				rules = append(rules, line)
+			} else {
+				toProduce = append(toProduce, line)
+			}
+		}
+	}
+
+	return rules, toProduce
+}
+
+func createRulesMap(rules []string) map[string][]string {
+	rulesMap := make(map[string][]string)
+
+	for _, rule := range rules {
+		parts := strings.Split(rule, "|")
+		if len(parts) == 2 {
+			rulesMap[parts[1]] = append(rulesMap[parts[1]], parts[0])
+		}
+	}
+
+	return rulesMap
+}
+
+func isSafe(items []string, rulesMap map[string][]string) bool {
+	for i := 0; i < len(items)-1; i++ {
+		after := items[i+1:]
+		testVals := rulesMap[items[i]]
+		for _, val := range after {
+			if slices.Contains(testVals, val) {
+				return false
+			}
+		}
+	}
+	return true
+}
+
+func reorderValues(vals []string, rulesMap map[string][]string) []string {
+	changed := false
+	var reordered []string
+
+	for i, curVal := range vals {
+		thingsBefore := rulesMap[curVal]
 		thingsAfter := vals[i+1:]
 
-		for j := 0; j < len(thingsAfter); j++ {
-			if slices.Contains(thingsShouldBeBefore, thingsAfter[j]) && !slices.Contains(temp, thingsAfter[j]) {
-				temp = append(temp, thingsAfter[j])
+		for _, afterVal := range thingsAfter {
+			if slices.Contains(thingsBefore, afterVal) && !slices.Contains(reordered, afterVal) {
+				reordered = append(reordered, afterVal)
 				changed = true
 			}
 		}
-		if !slices.Contains(temp, curVal) {
-			temp = append(temp, curVal)
+
+		if !slices.Contains(reordered, curVal) {
+			reordered = append(reordered, curVal)
 		}
 	}
-	if !changed {
-		return temp
-	} else {
-		return reorderVals(temp, rules)
+
+	if changed {
+		return reorderValues(reordered, rulesMap)
 	}
+	return reordered
 }
