@@ -48,6 +48,7 @@ Ensure you have Go installed on your system. You can download it [here](https://
    ```
 
 3. Run the solution for main:
+
    ```bash
    go run main.go
    ```
@@ -68,7 +69,7 @@ Shared functions used across multiple days are located in the `common/` director
 | Day 6  | ✅     | ✅     | 01:31:04       | 03:14:16     | 01:43:12       |
 | Day 7  | ✅     | ✅     | 03:26:13       | 07:11:32     | 03:45:19       |
 | Day 8  | ✅     | ✅     | 05:35:58       | 05:52:01     | 00:16:03       |
-| Day 9  | ❌     | ❌     | ----           | ----         | ----           |
+| Day 9  | ✅     | ✅     | 04:11:21       | 04:18:09     | 00:06:48       |
 | Day 10 | ❌     | ❌     | ----           | ----         | ----           |
 | Day 11 | ❌     | ❌     | ----           | ----         | ----           |
 | Day 12 | ❌     | ❌     | ----           | ----         | ----           |
