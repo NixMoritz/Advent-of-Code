@@ -7,19 +7,20 @@ import (
 )
 
 func main() {
-	/*result := SolvePart1()
-	fmt.Println("SolvePart1 Result:", result)
-
-	fmt.Println("Test SolvePart1 Result:")
-	testSolvePart1()
-	result := SolvePart2()
-	fmt.Println("SolvePart2 Result:", result)
-	fmt.Println("Test SolvePart2 Result:")
-	testSolvePart2()
+	/*
+		fmt.Println("Test SolvePart1 Result:")
+		testSolvePart1()
+		result := SolvePart2()
+		fmt.Println("SolvePart2 Result:", result)
+		fmt.Println("Test SolvePart2 Result:")
+		testSolvePart2()
 	*/
 
 	data, _ := os.ReadFile("input.txt")
 	input := strings.TrimSpace(string(data))
+
+	fmt.Println("SolvePart1 Result:", SolvePart1())
+	//fmt.Println("SolvePart2 Result:", SolvePart2())
 
 	fmt.Println(p1(input))
 	fmt.Println(p2(input))
