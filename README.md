@@ -85,7 +85,7 @@ Shared functions used across multiple days are located in the `common/` director
 | Day 22 | ✅     | ✅     | 00:02:11       | 00:13:43     | 00:11:32       |
 | Day 23 | ✅     | ✅     | 04:30:38       | 04:48:49     | 00:18:11       |
 | Day 24 | ✅     | ✅     | 05:50:12       | 07:26:09     | 01:35:57       |
-| Day 25 | ❌     | ❌     | ----           | ----         | ----           |
+| Day 25 | ✅     | ✅     | 06:56:22       | 06:57:33     | 00:01:11       |
 
 ## Contributing
 
