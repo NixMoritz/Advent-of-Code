@@ -9,15 +9,14 @@ Advent of Code is an annual event featuring daily programming challenges during 
 
 ## Repository Structure
 
-Change of format inevtiable  
 The repository is organized as follows:
 
-```
+```text
 .
 ├── 2024
-   ├── Task_1/
+   ├── Day1/
    │   ├── main.go        # Solutions for the day
-   ├── Task_2/
+   ├── Day2/
    │   ├── main.go        # Solutions for the day
    └──  README.md             # README for the year
 
