@@ -14,12 +14,13 @@ The repository is organized as follows:
 
 ```
 .
-├── Task_1/
-│   ├── main.go        # Solutions for the day
-├── Task_2/
-│   ├── main.go        # Solutions for the day
-├── README.md
-└── go.mod              # Go module file
+├── 2024
+   ├── Task_1/
+   │   ├── main.go        # Solutions for the day
+   ├── Task_2/
+   │   ├── main.go        # Solutions for the day
+   └──  README.md             # README for the year
+
 ```
 
 - Each day is located in its own directory.
@@ -37,17 +38,25 @@ Ensure you have Go installed on your system. You can download it [here](https://
 1. Clone this repository:
 
    ```bash
-   git clone https://github.com/NixMoritz/AoC_2024.git
-   cd AoC_2024
+   git clone https://github.com/NixMoritz/Advent-of-Code.git
+   cd Advent-of-Code
    ```
 
 2. Navigate to the day's folder:
 
    ```bash
-   cd Task_n
+   cd {year}
    ```
 
-3. Run the solution for main:
+3. Navigate to the day's folder:
+
+   ```bash
+   cd day{n}
+   ```
+
+4. Run the solution for main:
+
+   `don't forget to get your input data for the day`
 
    ```bash
    go run main.go
