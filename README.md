@@ -67,7 +67,19 @@ Shared functions used across multiple days are located in the `common/` director
 
 ## Progress
 
-- will be added
+| Year | Stars | Score | Finished |
+| ---- | ----- | ----- | -------- |
+| 2025 | ?     | ?     | ?        |
+| 2024 | 50/50 | 1     | ✔️       |
+| 2023 | 2/50  | 0     | ⭕       |
+| 2022 | 0/50  | 0     | ⭕       |
+| 2021 | 0/50  | 0     | ⭕       |
+| 2020 | 0/50  | 0     | ⭕       |
+| 2019 | 0/50  | 0     | ⭕       |
+| 2018 | 0/50  | 0     | ⭕       |
+| 2017 | 0/50  | 0     | ⭕       |
+| 2016 | 0/50  | 0     | ⭕       |
+| 2015 | 0/50  | 0     | ⭕       |
 
 ## Contributing
 
