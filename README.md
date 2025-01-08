@@ -77,6 +77,4 @@ Feel free to fork the repo and contribute! If you find a bug or have a better so
 
 This repository is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
----
-
 Happy coding! 🎅
