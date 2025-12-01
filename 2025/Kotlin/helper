@@ -1,0 +1,8 @@
+val numbers = input.map { it.toInt() }
+
+val grid = input.map { it.toCharArray() }
+// Access via grid[y][x]
+
+val blocks = File("src/Day01.txt")
+    .readText()
+    .split("\n\n") // Split by double newlinew
